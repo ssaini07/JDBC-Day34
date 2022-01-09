@@ -19,7 +19,7 @@ public class DBDemo {
         // String JDBCURL = "jdbc:mysql://127.0.0.1:3306/employee_payroll_service";
         String JDBCURL = "jdbc:mysql://localhost:3306/employee_payroll_service";
         try {
-            DriverManager.getConnection(JDBCURL, "root", "suzuki@7celerio");
+            DriverManager.getConnection(JDBCURL, "root", "root");
             System.out.println("Connection established successfully!!");
         } catch (SQLException e) {
             System.out.println("Connection is not established");

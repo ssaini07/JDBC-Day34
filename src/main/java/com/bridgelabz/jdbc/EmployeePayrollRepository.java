@@ -1,6 +1,7 @@
 package com.bridgelabz.jdbc;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,7 +33,7 @@ public class EmployeePayrollRepository {
                 info.setId(resultSet.getInt("id"));
                 info.setName(resultSet.getString("name"));
                 info.setGender(resultSet.getString("gender").charAt(0));
-                info.setStartDate(resultSet.getDate("startDate").toLocalDate());
+                info.setStartDate(Date.valueOf(resultSet.getDate("startDate").toLocalDate()));
                 info.setAddress(resultSet.getString("address"));
                 info.setPhone(resultSet.getString("phone_number"));
                 employeeInfos.add(info);
@@ -59,11 +60,11 @@ public class EmployeePayrollRepository {
     }
 
     public void updateSalaryUsingPreparedStatement(String name, int salary) {
-        try (Connection connection = getConnection()){
+        try (Connection connection = getConnection()) {
             String query = "update employee set salary=? where name =?";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setInt(1,salary);
-            preparedStatement.setString(2,name);
+            preparedStatement.setInt(1, salary);
+            preparedStatement.setString(2, name);
             int result = preparedStatement.executeUpdate();
             if (result >= 1) {
                 System.out.println("salary updated");
@@ -72,4 +73,30 @@ public class EmployeePayrollRepository {
         } catch (SQLException e) {
         }
     }
+
+    public List<EmployeeInfo> retrieveDataByParticularRange() {
+        List<EmployeeInfo> employeeInfos = new ArrayList<>();
+        try (Connection connection = getConnection()) {
+
+            String sqlQuery = "select * from employee\n" +
+                    "where startDate between '2021-04-10' and date(now());\n";
+            Statement preparedStatement = connection.prepareStatement(sqlQuery);
+            ResultSet resultSet = preparedStatement.executeQuery(sqlQuery);
+            while (resultSet.next()) {
+                EmployeeInfo info = new EmployeeInfo();
+                info.setId(resultSet.getInt("id"));
+                info.setName(resultSet.getString("name"));
+                info.setGender(resultSet.getString("gender").charAt(0));
+                info.setStartDate(Date.valueOf(resultSet.getDate("startDate").toLocalDate()));
+                info.setAddress(resultSet.getString("address"));
+                info.setPhone(resultSet.getString("phone_number"));
+                employeeInfos.add(info);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return employeeInfos;
+    }
 }
+
+

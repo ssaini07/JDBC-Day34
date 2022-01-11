@@ -1,5 +1,6 @@
 package com.bridgelabz.jdbc;
 
+import java.time.LocalDate;
 import java.util.Locale;
 
 public class EmployeePayrollService {
@@ -8,7 +9,12 @@ public class EmployeePayrollService {
     public static void main(String[] args) {
         EmployeePayrollService service = new EmployeePayrollService();
         //service.retrieveData();
-        service.updateSalary("Terrisa", 1000000);
+       // service.updateSalary("Terrisa", 1000000);
+        service.retrieveDataByDate();
+    }
+
+    private void retrieveDataByDate() {
+        System.out.println(repository.retrieveDataByParticularRange());
     }
 
     private void updateSalary(String name, int salary) {

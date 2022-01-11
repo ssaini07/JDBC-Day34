@@ -10,15 +10,9 @@ public class EmployeeInfo {
     private Date startDate;
     private String phone;
     private String address;
-    private String basic_pay;
+    private double basic_pay;
 
-    public String getBasic_pay() {
-        return basic_pay;
-    }
 
-    public void setBasic_pay(String basic_pay) {
-        this.basic_pay = basic_pay;
-    }
 
     public int getId() {
         return id;
@@ -66,6 +60,13 @@ public class EmployeeInfo {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+    public double getBasic_pay() {
+        return basic_pay;
+    }
+
+    public void setBasic_pay(double basic_pay) {
+        this.basic_pay = basic_pay;
     }
 
     @Override

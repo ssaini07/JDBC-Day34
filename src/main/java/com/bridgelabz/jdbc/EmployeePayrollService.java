@@ -10,8 +10,34 @@ public class EmployeePayrollService {
         EmployeePayrollService service = new EmployeePayrollService();
         //service.retrieveData();
        // service.updateSalary("Terrisa", 1000000);
-        service.retrieveDataByDate();
+        //service.retrieveDataByDate();
+        service.getSumOfSalaryByGender();
+        service.getMaxSalaryByGender();
+        service.getAvgSalaryByGender();
+        service.getMinSalaryByGender();
+        service.getCountByGender();
     }
+
+    private void getCountByGender() {
+        System.out.println(repository.getCountByGender());
+    }
+
+    private void getMinSalaryByGender() {
+        System.out.println(repository.getMinSalaryByGender());
+    }
+
+    private void getAvgSalaryByGender() {
+        System.out.println(repository.getAvgSalaryByGender());
+    }
+
+    private void getMaxSalaryByGender() {
+        System.out.println(repository.getMaxSalaryByGender());
+    }
+
+    private void getSumOfSalaryByGender() {
+        System.out.println(repository.getSumOfSalaryByGender());
+    }
+
 
     private void retrieveDataByDate() {
         System.out.println(repository.retrieveDataByParticularRange());

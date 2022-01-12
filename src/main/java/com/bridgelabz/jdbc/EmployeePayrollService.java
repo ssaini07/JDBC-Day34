@@ -11,11 +11,16 @@ public class EmployeePayrollService {
         //service.retrieveData();
        // service.updateSalary("Terrisa", 1000000);
         //service.retrieveDataByDate();
-        service.getSumOfSalaryByGender();
-        service.getMaxSalaryByGender();
-        service.getAvgSalaryByGender();
-        service.getMinSalaryByGender();
-        service.getCountByGender();
+        //service.getSumOfSalaryByGender();
+       // service.getMaxSalaryByGender();
+       // service.getAvgSalaryByGender();
+       // service.getMinSalaryByGender();
+        //service.getCountByGender();
+        service.addNewEmployee();
+    }
+
+    private void addNewEmployee() {
+        System.out.println(repository.addNewEmployee());
     }
 
     private void getCountByGender() {

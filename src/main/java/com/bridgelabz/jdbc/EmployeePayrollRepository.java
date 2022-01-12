@@ -9,7 +9,7 @@ import java.util.Map;
 
 public class EmployeePayrollRepository {
 
-    private Connection getConnection() {
+    public Connection getConnection() {
         Connection connection = null;
         try {
             String JDBCURL = "jdbc:mysql://localhost:3306/employee_payroll_service";
@@ -198,6 +198,30 @@ public class EmployeePayrollRepository {
     }
 
     //UC7 ------>
+
+    public List<EmployeeInfo> addNewEmployee() {
+        List<EmployeeInfo> employeeInfos = new ArrayList<>();
+        try (Connection connection = getConnection()) {
+            Statement statement = connection.createStatement();
+            String sqlQuery = "insert into employee_payroll\n" +
+                    "(name, gender, startDate, address, phone_number)\n" +
+                    "values ('Sara', 'F', '2021-01-19', 'colony no:4', '9898989899');";
+            ResultSet resultSet = statement.executeQuery(sqlQuery);
+            while (resultSet.next()) {
+                EmployeeInfo info = new EmployeeInfo();
+                info.setId(resultSet.getInt("id"));
+                info.setName(resultSet.getString("name"));
+                info.setGender(resultSet.getString("gender").charAt(0));
+                info.setStartDate(Date.valueOf(resultSet.getDate("startDate").toLocalDate()));
+                info.setAddress(resultSet.getString("address"));
+                info.setPhone(resultSet.getString("phone_number"));
+                employeeInfos.add(info);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return employeeInfos;
+    }
 
 
 }
